@@ -39,21 +39,23 @@ router.delete('/:id', (req,res) => {
 
 // POST /:id/toggle Toggle the state of specific todo item (Todo / Done)
 router.post('/:id/toggle', (req,res) => {
-    // Todo.findOne({id: req.params.id}).exec((err,results) => {
-    //     if(results) {
-    //         results.update({id: req.params.id}, { $set: {status: '555'}})
-    //         res.json({todo_list : results})
-    //     } else {
-    //         res.json('No items')
-    //     }
-    // })    
-    // Todo.findByIdAndUpdate({id: req.params.id}, {status: '555'}).exec((err,results) => {
-    //     if(results) {
-    //         res.json({todo_list : results})
-    //     } else {
-    //         res.json('No items')
-    //     }
-    // })
+    Todo.findOne({id: req.params.id}).exec((err,results) => {
+        if(results) {
+            let value = ''
+            if(results.status == 'Done') value = 'Todo'
+            else value = 'Done'
+            Todo.findByIdAndUpdate(results._id, {status: value}, (err, updated) => {
+                if (updated) {
+                    res.json({ success: true, review: results })
+                } else {
+                    res.json('Error Updating Trainer Rating ' + err)
+                }
+            })
+        } else {
+            res.json('No items')
+        }
+    })    
+    
     
 })
 
