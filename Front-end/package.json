@@ -1,11 +1,15 @@
 {
-  "name": "todoapp",
-  "version": "0.0.1",
-  "description": "To-do web client (single-page application), Front-end for TakeMeTour working Application",
+  "name": "front",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "lodash": "^4.17.5",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
+    "styled-components": "^3.1.6",
+    "styled-theme": "^0.3.3",
+    "superagent": "^3.8.2"
   },
   "devDependencies": {
     "react-scripts": "1.1.0"
