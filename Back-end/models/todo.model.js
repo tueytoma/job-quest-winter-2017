@@ -5,10 +5,9 @@ const autoIncrement = require('mongoose-auto-increment');
 autoIncrement.initialize(mongoose.connection);
 
 let todoSchema = new Schema({
-    id : {
-        unique : true,
+    name : {
         type : String,
-        required: 'Please fill in a ID'
+        required: 'Please fill in a Name'
     },
     first_name : {
         type : String,

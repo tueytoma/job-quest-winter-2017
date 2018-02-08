@@ -16,7 +16,7 @@ router.get('/',(req,res)=>{
 // POST / Create new todo
 router.post('/', (req, res) => {
     let newItem = new Todo()
-    newItem.id = req.body.id
+    newItem.name = req.body.name
     newItem.first_name = req.body.first_name
     newItem.last_name = req.body.last_name
     newItem.start_date = req.body.start_date
@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
 // DELETE /:id Delete specific todo item
 router.delete('/:id', (req,res) => {
     const todo = Todo.findOne({
-        id: req.params.id
+        _id: req.params.id
     })
     todo.remove();
     res.send({
@@ -39,7 +39,7 @@ router.delete('/:id', (req,res) => {
 
 // POST /:id/toggle Toggle the state of specific todo item (Todo / Done)
 router.post('/:id/toggle', (req,res) => {
-    Todo.findOne({id: req.params.id}).exec((err,results) => {
+    Todo.findOne({_id: req.params.id}).exec((err,results) => {
         if(results) {
             let value = ''
             if(results.status == 'Done') value = 'Todo'

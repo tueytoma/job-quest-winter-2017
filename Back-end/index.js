@@ -2,17 +2,17 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 //Declare Sub Module Dependencies
 const mock = require('./routes/mock')
 const todo = require('./routes/todo')
 
-mongoose.connect('mongodb://localhost/todo_api', {
-    useMongoClient: true,
-})
+mongoose.connect('mongodb://localhost/todo_api')
 
 var app = express()
 
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended:true
