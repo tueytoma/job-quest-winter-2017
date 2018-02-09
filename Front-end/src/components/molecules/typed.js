@@ -47,8 +47,8 @@ class Typed extends Component {
     }
 
     componentDidMount() {
-            this.interval = setInterval(() => this.tick(), 300);
-            this.interval2 = setInterval(() => this.tick2(), 100);
+            this.interval = setInterval(() => this.tick(), 200);
+            this.interval2 = setInterval(() => this.tick2(), 50);
 
     }
 

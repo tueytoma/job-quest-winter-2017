@@ -6,12 +6,14 @@ import api from '../../api'
 import Label from '../atoms/label'
 import Button from '../atoms/button'
 import Typed from '../molecules/typed'
+import Notebox from '../molecules/notebox'
 import Topbar from '../organisms/topbar'
+import TextField from '../atoms/textfield'
+import { Buffer } from 'buffer';
 
 const Wrapper = styled.div`
   background-color: #F5f5f5;
   width: 100vw;
-  height: 1000vh;
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -29,10 +31,21 @@ const CenterWraper = styled.div`
 
 const HeaderWrapper = styled.div`
     background-color: ${props => props.bgColor};
+    background-image: url(${props => props.bgImage});
+    background-repeat: no-repeat;
+    background-size: cover;
+    
     width: 100vw;
     height: ${props => props.height};
     display: flex;
     flex-direction: column;
+`
+
+const Div = styled.div`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 class homePage extends React.Component {
@@ -40,25 +53,72 @@ class homePage extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-          text: '555'
+            results: '',       
+            name: '',
+            description: '',
+            end_date: '',
       };
     }
 
-    // componentDidMount(){
-    //     api.getTodo()
-    //     .then((res)=>{
-    //       this.setState({text : res})
-    //       console.log(res)
-    //     })
-    // }
+    changeName = e => {
+        this.setState({name : e.target.value})
+    }
 
-    test = e => {
+    changeDescription= e => {
+        this.setState({description : e.target.value})
+    }
+
+    changeDate = e => {
+        this.setState({end_date : e.target.value})
+    }
+
+    createNote = e => {
+        let data = {
+            name: this.state.name,
+            description: this.state.description,
+            end_date: this.state.end_date,
+            status: "Todo"
+        }
+        if(this.validate()){
+            api.createNote(data)
+                .then((res)=>{
+                    console.log(res)
+                    if(this.validate()) {
+                    //   console.log("SUCCESS")
+                    window.location.reload(true);
+                    }
+                })
+        }
+
+    }
+
+    validate = () => {
+        var check = 0
+        if(this.state.name.length <= 0) check--
+        if(this.state.description.length <= 0) check--
+        return check==0
+    }
+
+    componentDidMount() {
+        this.getSearchResult()
+    }
+
+    getSearchResult = () => {
+          api.getTodo()
+          .then((res)=>{
+            this.setState({results : res})
+          })
     }
 
     render() {
+        console.log(this.state.results.length)
+        var resultFeed = []
+        for (var i = 0 ; i < this.state.results.length ; i++)
+          resultFeed.push(<Notebox key={i} note={this.state.results[i]}/>)
+        
         return (
             <Wrapper>
-                <HeaderWrapper bgColor="#7289da" height="95vh">
+                <HeaderWrapper bgColor="#80788E" height="95vh">
                     <CenterWraper>
                     <Topbar/>
                         <Typed/>
@@ -68,15 +128,68 @@ class homePage extends React.Component {
 
                 <HeaderWrapper bgColor="#4f485c" height="15vh">
                     <CenterWraper style={{alignItems: 'center', justifyContent: 'center'}}>
-                        <Button dark onClick={this.test} height="40px" width="145px" size="เริ่มค้นหา" color="#4f485c">Create Note</Button>
+                        <Label size="24px" weight="500" color="white"> 
+                        New way to make notes - One of the most effective ways to remember
+                        </Label>
                     </CenterWraper>
                 </HeaderWrapper>
 
-                <HeaderWrapper bgColor="#FFF" style={{padding: "32px 0"}}>
-                    <CenterWraper style={{alignItems: 'center'}}>
-                        <Label size="60px" weight="900" >Create_Note</Label>
+                <HeaderWrapper className="tool" bgColor="#F5f5f5" style={{padding: "100px 0"}}>
+                    <CenterWraper style={{flexDirection: 'row', justifyContent: 'center'}}>
+                        <Div>
+                            <Label size="24px" weight="900" color="#545454">CREATE</Label>
+                            <Label style={{textAlign: 'center'}}
+                            size="18px" weight="100" color="#c4c4c4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ligula justo, dictum faucibus ligula sit amet, tincidunt auctor ante. Ut feugiat lacus at risus lacinia imperdiet. Sed ultricies est eget.
+                            </Label>
+                        </Div>
+                        <Div>
+                            <Label size="24px" weight="900" color="#545454">CHECK</Label>
+                            <Label style={{textAlign: 'center'}}
+                            size="18px" weight="100" color="#c4c4c4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ligula justo, dictum faucibus ligula sit amet, tincidunt auctor ante. Ut feugiat lacus at risus lacinia imperdiet. Sed ultricies est eget.
+                            </Label>
+                        </Div>
+                        <Div>
+                            <Label size="24px" weight="900" color="#545454">DELETE</Label>
+                            <Label style={{textAlign: 'center'}}
+                            size="18px" weight="100" color="#c4c4c4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ligula justo, dictum faucibus ligula sit amet, tincidunt auctor ante. Ut feugiat lacus at risus lacinia imperdiet. Sed ultricies est eget.
+                            </Label>
+                        </Div>
                     </CenterWraper>
                 </HeaderWrapper>
+
+                <HeaderWrapper id="create" bgColor="#F9FAFC" style={{padding: "100px 0"}}>
+                    <CenterWraper style={{alignItems: 'center'}}>
+                        <Label title size="60px" weight="900" color="#4f485c">Create_Note</Label>
+                        <CenterWraper style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
+                            <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}}size="18px" weight="900" color="#4f485c">Name of Note</Label>
+                            <TextField onChange={this.changeName} placeholder="name of note" width="400px" height="30px"/>
+                        </CenterWraper>
+                        <CenterWraper style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
+                            <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}} size="18px" weight="900" color="#4f485c">Description</Label>
+                            <TextField onChange={this.changeDescription} placeholder="description" width="400px" height="30px"/>
+                        </CenterWraper>
+                        <CenterWraper style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
+                            <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}} size="18px" weight="900" color="#4f485c">Deadline</Label>
+                            <TextField type="Date" onChange={this.changeDate} placeholder="end date" width="400px" height="30px"/>
+                        </CenterWraper>
+                        <Button onClick={this.createNote} height="50px" width="200px" size="24px" color="#4f485c">Create</Button>
+                    </CenterWraper>
+                </HeaderWrapper>
+
+                <HeaderWrapper id="list" bgColor="#F5f5f5" style={{padding: "100px 0"}}>
+                    <CenterWraper style={{alignItems: 'center'}}>
+                        <Label title size="60px" weight="900" color="#4f485c">To-do_Lists</Label>
+                        <CenterWraper style={{justifyContent: 'center', flexDirection: 'row'}}>
+                            <TextField onChange={this.changeName} placeholder="seach" width="400px" height="30px"/>
+                        </CenterWraper>
+                        {resultFeed}
+                    </CenterWraper>
+                </HeaderWrapper>
+
+                
 
             </Wrapper>
         )

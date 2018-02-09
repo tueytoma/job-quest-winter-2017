@@ -10,10 +10,36 @@ api.err = err => {
 }
 
 api.getTodo = () =>{
-    return Request.get(config.BACKURL)
+    return Request.get(config.BACKURL + '/')
         .then(res => {
-            return res.body.todo_list[0].status
+            return res.body.todo_list
         })
+}
+
+api.createNote = data => {
+	return Request.post(config.BACKURL + '/')
+        .set('Accept', 'application/json')
+        .send(data)
+		.then(res => {
+			return res.body
+		},api.err)
+}
+
+api.toggleStatus = id => {
+	return Request.post(config.BACKURL + '/' + id +' /toggle')
+        .set('Accept', 'application/json')
+        .send(id)
+		.then(res => {
+			return res.body
+		},api.err)
+}
+
+api.removeItemById = id => {
+    return Request.delete(config.BACKURL + '/' + id)
+        .set('Accept', 'application/json')
+        .then(res => {
+            return res.body
+        },api.err)
 }
 
 module.exports = api
