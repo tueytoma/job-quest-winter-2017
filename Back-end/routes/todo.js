@@ -17,9 +17,7 @@ router.get('/',(req,res)=>{
 router.post('/', (req, res) => {
     let newItem = new Todo()
     newItem.name = req.body.name
-    newItem.first_name = req.body.first_name
-    newItem.last_name = req.body.last_name
-    newItem.start_date = req.body.start_date
+    newItem.description = req.body.description
     newItem.end_date = req.body.end_date
     newItem.status = req.body.status
     newItem.save()
@@ -28,12 +26,17 @@ router.post('/', (req, res) => {
 
 // DELETE /:id Delete specific todo item
 router.delete('/:id', (req,res) => {
-    const todo = Todo.findOne({
+    Todo.findOne({
         _id: req.params.id
-    })
-    todo.remove();
-    res.send({
-        message: 'Success'
+    }).exec((err,results) => {
+        if(results) {
+            results.remove();
+            res.send({
+                message: 'Success'
+            })
+        } else {
+            res.json('No items')
+        }
     })
 })
 

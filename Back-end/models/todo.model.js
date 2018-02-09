@@ -9,16 +9,8 @@ let todoSchema = new Schema({
         type : String,
         required: 'Please fill in a Name'
     },
-    first_name : {
-        type : String,
-        required: 'Please fill in a firstname'
-    },
-    last_name : {
-        type : String,
-        required: 'Please fill in a lastname'
-    },
-    start_date : {
-		type : Date
+    description: {
+		type : String
     },
     end_date : {
 		type : Date

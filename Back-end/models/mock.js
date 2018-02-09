@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const {Todo} = require('./todo.model')
 
-var description = 'data mockup'
+var description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ligula justo, dictum faucibus ligula sit amet, tincidunt auctor ante. Ut feugiat lacus at risus lacinia imperdiet. Sed ultricies est eget.'
 
 var Entities = {
 
@@ -10,45 +10,35 @@ var Entities = {
         {
             _id : 0,
             name: 'Work 1',
-            first_name: 'Sitthichai',
-            last_name: 'Saejia',
-            start_date: '2017-05-19T14:00:00+07:00',
+            description: description,
             end_date: '2017-05-19T14:00:00+07:00',
             status: 'Todo'
         },
         {
             _id : 1,
             name: 'Work 2',
-            first_name: 'Tae-yeon',
-            last_name: 'Kim',
-            start_date: '2017-05-19T14:00:00+07:00',
+            description: description,
             end_date: '2017-05-19T14:00:00+07:00',
             status: 'Done'
         },
         {
             _id : 2,
             name: 'Work 3',
-            first_name: 'Tuey',
-            last_name: 'Toma',
-            start_date: '2017-05-19T14:00:00+07:00',
+            description: description,
             end_date: '2017-05-19T14:00:00+07:00',
             status: 'Todo'
         },
         {
             _id : 3,
             name: 'Work 4',
-            first_name: 'Step',
-            last_name: 'Boom',
-            start_date: '2017-05-19T14:00:00+07:00',
+            description: description,
             end_date: '2017-05-19T14:00:00+07:00',
             status: 'Done'
         },
         {
             _id : 4,
             name: 'Work 5',
-            first_name: 'Benz',
-            last_name: 'Naja',
-            start_date: '2017-05-19T14:00:00+07:00',
+            description: description,
             end_date: '2017-05-19T14:00:00+07:00',
             status: 'Todo'
         },
