@@ -18,7 +18,6 @@ const Wrapper = styled.div`
 
 const A = styled.a`
     text-decoration: none;
-    transition: all .8s ease-in-out;
 `
 
 class Topbar extends React.Component {

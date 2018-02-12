@@ -18,6 +18,7 @@ const Button = styled.button`
     color: ${props => props.disabled ? "#c4c4c4" : props.dark ? "#F9FAFC" : props.color}; 
     outline: none;
     cursor: pointer;
+    transition: all 0.2s ease;
     &:hover {
         color: ${props => props.disabled ? "#c4c4c4" : props.dark ? props.color : "#F9FAFC"}; 
         background-color: ${props => props.disabled ? "#F9FAFC" : props.dark ? "#F9FAFC" : props.color}; 

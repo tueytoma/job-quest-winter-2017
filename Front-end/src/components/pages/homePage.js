@@ -9,6 +9,7 @@ import Typed from '../molecules/typed'
 import Notebox from '../molecules/notebox'
 import Topbar from '../organisms/topbar'
 import TextField from '../atoms/textfield'
+import Dropdown from '../atoms/dropdown'
 import { Buffer } from 'buffer';
 
 const Wrapper = styled.div`
@@ -25,7 +26,6 @@ const CenterWraper = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
-
     align-self: center;
 `
 
@@ -34,7 +34,6 @@ const HeaderWrapper = styled.div`
     background-image: url(${props => props.bgImage});
     background-repeat: no-repeat;
     background-size: cover;
-    
     width: 100vw;
     height: ${props => props.height};
     display: flex;
@@ -53,10 +52,13 @@ class homePage extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-            results: '',       
+            results: '',     
+            error: false,
             name: '',
             description: '',
             end_date: '',
+            search_name: '',
+            search_type: '',
       };
     }
 
@@ -72,6 +74,14 @@ class homePage extends React.Component {
         this.setState({end_date : e.target.value})
     }
 
+    changSearchName = e => {
+        this.setState({search_name : e.target.value})
+    } 
+
+    changSearchType = e => {
+        this.setState({search_type : e.target.value})
+    } 
+
     createNote = e => {
         let data = {
             name: this.state.name,
@@ -79,6 +89,7 @@ class homePage extends React.Component {
             end_date: this.state.end_date,
             status: "Todo"
         }
+        this.setState({error : !this.validate()})
         if(this.validate()){
             api.createNote(data)
                 .then((res)=>{
@@ -94,8 +105,8 @@ class homePage extends React.Component {
 
     validate = () => {
         var check = 0
-        if(this.state.name.length <= 0) check--
-        if(this.state.description.length <= 0) check--
+        if(this.state.name.length <= 0 || this.state.name.length > 200) check--
+        if(this.state.description.length <= 0 || this.state.name.length > 200) check--
         return check==0
     }
 
@@ -110,8 +121,13 @@ class homePage extends React.Component {
           })
     }
 
+    search = e => {
+        if (e.keyCode == 13) {
+            console.log()
+        }
+    }
+
     render() {
-        console.log(this.state.results.length)
         var resultFeed = []
         for (var i = 0 ; i < this.state.results.length ; i++)
           resultFeed.push(<Notebox key={i} note={this.state.results[i]}/>)
@@ -128,13 +144,13 @@ class homePage extends React.Component {
 
                 <HeaderWrapper bgColor="#4f485c" height="15vh">
                     <CenterWraper style={{alignItems: 'center', justifyContent: 'center'}}>
-                        <Label size="24px" weight="500" color="white"> 
+                        <Label style={{textAlign: 'center'}} size="24px" weight="500" color="white"> 
                         New way to make notes - One of the most effective ways to remember
                         </Label>
                     </CenterWraper>
                 </HeaderWrapper>
 
-                <HeaderWrapper className="tool" bgColor="#F5f5f5" style={{padding: "100px 0"}}>
+                <HeaderWrapper id="tool" bgColor="#F5f5f5" style={{padding: "100px 0"}}>
                     <CenterWraper style={{flexDirection: 'row', justifyContent: 'center'}}>
                         <Div>
                             <Label size="24px" weight="900" color="#545454">CREATE</Label>
@@ -176,6 +192,9 @@ class homePage extends React.Component {
                             <TextField type="Date" onChange={this.changeDate} placeholder="end date" width="400px" height="30px"/>
                         </CenterWraper>
                         <Button onClick={this.createNote} height="50px" width="200px" size="24px" color="#4f485c">Create</Button>
+                        {this.state.error && <Label style={{textAlign: 'center', marginTop: '16px'}} size="18px" weight="100" color="#880000">
+                            'Name of Note' and 'Description' are limited to 200 characters.
+                        </Label>}
                     </CenterWraper>
                 </HeaderWrapper>
 
@@ -183,7 +202,8 @@ class homePage extends React.Component {
                     <CenterWraper style={{alignItems: 'center'}}>
                         <Label title size="60px" weight="900" color="#4f485c">To-do_Lists</Label>
                         <CenterWraper style={{justifyContent: 'center', flexDirection: 'row'}}>
-                            <TextField onChange={this.changeName} placeholder="seach" width="400px" height="30px"/>
+                            <TextField onKeyDown={this.search} onChange={this.changSearchName} placeholder="search" width="400px" height="30px"/>
+                            <Dropdown onChange={this.changSearchType} width="auto" height="40px" menu={['Todo','Done']}/>
                         </CenterWraper>
                         {resultFeed}
                     </CenterWraper>

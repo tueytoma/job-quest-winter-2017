@@ -1,15 +1,12 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import api from '../../api'
+import  _ from 'lodash'
+import ReactDom from 'react-dom'
 
 import Label from '../atoms/label'
 
-const ButtonWrapper = styled.button`
-
-`
-
 const Wrapper = styled.div`
-    /* background: #7289da; */
     width: 80%;
     height: 150px;
     display: flex;
@@ -17,10 +14,15 @@ const Wrapper = styled.div`
     align-self: center;
     justify-content: flex-end;
     flex-direction: row;
-
+    transition: all 0.3s ease;
     margin: 8px 0 8px 0;
     padding-bottom: 8px;
     border-bottom: 2px solid rgba(200,200,200,0.5);
+
+    &:hover {
+        cursor: pointer;
+        background: rgba(200,200,200,0.2);
+    }
 `
 
 const Left = styled.div`
@@ -31,7 +33,6 @@ const Left = styled.div`
 `
 
 const Right = styled.div`
-    /* background: #00FF00; */
     flex: 3;
     display: flex;
     flex-direction: column;
@@ -55,6 +56,7 @@ const Status = styled.div`
     height: 100px;
     width: 100px;
     border-radius: 100px;
+    transition: all 0.2s ease;
 
     &:hover {
         cursor: pointer;
@@ -67,7 +69,16 @@ class Notebox extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            show: false
         };
+    }
+
+    handleClose = () => {
+        this.setState({ show: false });
+    }
+
+    handleShow = () => {
+        this.setState({ show: true });
     }
 
     toggle = e => {
@@ -89,17 +100,23 @@ class Notebox extends React.Component {
     }
 
     render() {
+        // let desc = _.truncate(this.props.note.description, {
+        //     'length': 200,
+        //     'separator': ' '
+        //   });
+        
         let Day = ["Sunday ", "Monday", "Tuesday ", "Wednesday", "Thursday", "Friday", "Saturday "]
         let Month = ["January","February","March","April","May","June","July", "August","September","October","November","December"]
         let date = Day[new Date(String(this.props.note.end_date)).getDay()] + " " + new Date(String(this.props.note.end_date)).getDate() + " " +  Month[new Date(String(this.props.note.end_date)).getMonth()] + " " +  new Date(String(this.props.note.end_date)).getFullYear()
+        if(this.props.note.end_date == null) date = 'No DEADLINE'
         return(
-            <Wrapper>
+            <Wrapper onClick={this.handleShow}>
                 <Left >
                     <Status onClick={this.toggle} status={this.props.note.status == 'Todo' ? "#FF0000" : "#00FF00"}/>
                 </Left>
                 <Right>
                     <Label size="24px" weight="900" color="#222222">{this.props.note.name}</Label>
-                    <Label size="18px" weight="100" color="#545454">{this.props.note.description}</Label>
+                    <Label size="18px" weight="100" color="#545454">{desc}</Label>
                     <Div >
                         <Half>
                             <Label size="16px" weight="100" color="#949494">deadline: {date}</Label>

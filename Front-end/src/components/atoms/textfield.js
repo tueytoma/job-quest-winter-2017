@@ -15,6 +15,7 @@ const InputTextStyled = styled.input`
     border-radius: 6px;
     padding: 2px 16px 4px 16px;
     margin: 16px 0 16px 0;
+    transition: all 0.2s ease;
 
     &::placeholder {
         color: rgba(84, 84, 84, 0.2);
@@ -33,7 +34,7 @@ class Textfield extends React.Component{
 
     render(){
         return (
-            <InputTextStyled type={this.props.type} onChange={this.props.onChange} width={this.props.width} height={this.props.height} 
+            <InputTextStyled onKeyDown={this.props.onKeyDown} type={this.props.type} onChange={this.props.onChange} width={this.props.width} height={this.props.height} 
             placeholder={this.props.placeholder} value={this.props.value}/>
         )
     }
