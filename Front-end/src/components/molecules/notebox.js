@@ -116,7 +116,7 @@ class Notebox extends React.Component {
                 </Left>
                 <Right>
                     <Label size="24px" weight="900" color="#222222">{this.props.note.name}</Label>
-                    <Label size="18px" weight="100" color="#545454">{desc}</Label>
+                    <Label size="18px" weight="100" color="#545454">{this.props.note.description}</Label>
                     <Div >
                         <Half>
                             <Label size="16px" weight="100" color="#949494">deadline: {date}</Label>
