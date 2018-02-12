@@ -58,7 +58,7 @@ const Status = styled.div`
 
     &:hover {
         cursor: pointer;
-        background: ${props => props.status == "#FF0000" ? "rgba(255,0,0,0.8)" : "rgba(0,255,0,0.8)"};
+        background: ${props => props.status == "#FF0000" ? "rgba(240,0,0,0.8)" : "rgba(0,240,0,0.8)"};
     }
 `
 
@@ -89,7 +89,9 @@ class Notebox extends React.Component {
     }
 
     render() {
-        let date = new Date(String(this.props.note.end_date)).getDate() + "-" +  new Date(String(this.props.note.end_date)).getMonth() + "-" +  new Date(String(this.props.note.end_date)).getYear()
+        let Day = ["Sunday ", "Monday", "Tuesday ", "Wednesday", "Thursday", "Friday", "Saturday "]
+        let Month = ["January","February","March","April","May","June","July", "August","September","October","November","December"]
+        let date = Day[new Date(String(this.props.note.end_date)).getDay()] + " " + new Date(String(this.props.note.end_date)).getDate() + " " +  Month[new Date(String(this.props.note.end_date)).getMonth()] + " " +  new Date(String(this.props.note.end_date)).getFullYear()
         return(
             <Wrapper>
                 <Left >
