@@ -10,7 +10,7 @@ var Entities = {
         {
             _id : 0,
             name: 'Work 1',
-            description: description,
+            description: 'Works ' + description,
             end_date: '2017-05-19T14:00:00+07:00',
             status: 'Todo'
         },
@@ -18,28 +18,28 @@ var Entities = {
             _id : 1,
             name: 'Work 2',
             description: description,
-            end_date: '2017-05-19T14:00:00+07:00',
+            end_date: '2017-05-20T14:00:00+07:00',
             status: 'Done'
         },
         {
             _id : 2,
             name: 'Work 3',
             description: description,
-            end_date: '2017-05-19T14:00:00+07:00',
+            end_date: '2017-05-21T14:00:00+07:00',
             status: 'Todo'
         },
         {
             _id : 3,
             name: 'Work 4',
             description: description,
-            end_date: '2017-05-19T14:00:00+07:00',
+            end_date: '2017-05-22T14:00:00+07:00',
             status: 'Done'
         },
         {
             _id : 4,
             name: 'Work 5',
             description: description,
-            end_date: '2017-05-19T14:00:00+07:00',
+            end_date: '2017-05-18T14:00:00+07:00',
             status: 'Todo'
         },
     ]

@@ -5,11 +5,68 @@ var router = express.Router()
 
 // GET / Get all todos
 router.get('/',(req,res)=>{
-    Todo.find({}).exec((err,results) => {
+    Todo.find({}).sort({end_date : 1}).exec((err,results) => {
         if(results)
             res.json({todo_list : results})
         else
             res.json('No items')
+    })
+})
+
+router.get('/todo', (req, res)=>{
+    let name = req.query.name
+    let status = req.query.status
+
+    let query = {}
+
+    if(!name) {
+        query['$or'] = [
+            {
+                status: {
+                    $regex: status,
+                    $options: 'i'
+                }
+            }
+        ]
+    }
+    else if(!status) {
+        query['$or'] = [
+            {
+                name: {
+                    $regex: name,
+                    $options: 'i'
+                },
+            },
+            {
+                description: {
+                    $regex: name,
+                    $options: 'i'
+                },
+            }
+        ]
+    }
+    else {
+        query['$and'] = [
+            {
+                status: {
+                    $regex: status,
+                    $options: 'i'
+                }
+            },
+            {
+                name: {
+                    $regex: name,
+                    $options: 'i'
+                },
+            }
+        ]
+    }
+
+    Todo.find(query).sort({end_date : 1}).exec((err,results)=>{
+        if(results) 
+            res.json({todo_list : results})
+        else
+            res.json('No Users')
     })
 })
 
