@@ -176,7 +176,7 @@ class homePage extends React.Component {
 
                 <HeaderWrapper id="create" bgColor="#F9FAFC" style={{padding: "100px 0"}}>
                     <CenterWraper style={{alignItems: 'center'}}>
-                        <Label title size="60px" weight="900" color="#4f485c">Create_Note</Label>
+                        <Label size="60px" weight="900" color="#4f485c">Create_Note</Label>
                         <CenterWraper style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
                             <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}}size="18px" weight="900" color="#4f485c">Name of Note</Label>
                             <TextField onChange={this.changeName} placeholder="name of note" width="400px" height="30px"/>
