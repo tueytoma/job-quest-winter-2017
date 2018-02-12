@@ -1,6 +1,6 @@
 import React from 'react'
 
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
 `
@@ -35,6 +35,8 @@ const Option = styled.option`
 class DropdownMenu extends React.Component {
     constructor(props) {
     super(props)
+    this.state = {
+    };
   }
 
     render() {

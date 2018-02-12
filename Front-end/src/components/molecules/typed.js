@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import styled from 'styled-components'
 
 import Label from '../atoms/label'
@@ -37,7 +36,7 @@ class Typed extends Component {
             let str = this.state.word[this.state.position].substring(0,this.state.typed_len);
             this.setState({typed : str});
             this.setState((p) => ({typed_len : p.typed_len-1}));
-            if(this.state.typed_len == -5)  {
+            if(this.state.typed_len === -5)  {
                 if(this.state.position < this.state.word.length-1) 
                     this.setState({position : this.state.position+1});
                 else  this.setState({position : 0});

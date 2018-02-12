@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-// import { Link } from 'react-router-dom';
 import api from '../../api'
 
 import Label from '../atoms/label'
@@ -10,7 +9,6 @@ import Notebox from '../molecules/notebox'
 import Topbar from '../organisms/topbar'
 import TextField from '../atoms/textfield'
 import Dropdown from '../atoms/dropdown'
-import { Buffer } from 'buffer';
 
 const Wrapper = styled.div`
   background-color: #F5f5f5;
@@ -107,7 +105,7 @@ class homePage extends React.Component {
         var check = 0
         if(this.state.name.length <= 0 || this.state.name.length > 200) check--
         if(this.state.description.length <= 0 || this.state.name.length > 200) check--
-        return check==0
+        return check===0
     }
 
     componentDidMount() {
@@ -122,7 +120,7 @@ class homePage extends React.Component {
     }
 
     search = e => {
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
             console.log()
         }
     }

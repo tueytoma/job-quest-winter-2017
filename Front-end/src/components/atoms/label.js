@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { font } from 'styled-theme'
 
 const Label = styled.span`
     font-family: Kanit;

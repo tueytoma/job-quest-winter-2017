@@ -1,8 +1,7 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import api from '../../api'
-import  _ from 'lodash'
-import ReactDom from 'react-dom'
+// import  _ from 'lodash'
 
 import Label from '../atoms/label'
 
@@ -60,7 +59,7 @@ const Status = styled.div`
 
     &:hover {
         cursor: pointer;
-        background: ${props => props.status == "#FF0000" ? "rgba(240,0,0,0.8)" : "rgba(0,240,0,0.8)"};
+        background: ${props => props.status === "#FF0000" ? "rgba(240,0,0,0.8)" : "rgba(0,240,0,0.8)"};
     }
 `
 
@@ -112,7 +111,7 @@ class Notebox extends React.Component {
         return(
             <Wrapper onClick={this.handleShow}>
                 <Left >
-                    <Status onClick={this.toggle} status={this.props.note.status == 'Todo' ? "#FF0000" : "#00FF00"}/>
+                    <Status onClick={this.toggle} status={this.props.note.status === 'Todo' ? "#FF0000" : "#00FF00"}/>
                 </Left>
                 <Right>
                     <Label size="24px" weight="900" color="#222222">{this.props.note.name}</Label>

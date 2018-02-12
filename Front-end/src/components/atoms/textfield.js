@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const InputTextStyled = styled.input`
     outline: none;
@@ -30,6 +30,8 @@ const InputTextStyled = styled.input`
 class Textfield extends React.Component{
     constructor(props){
         super(props)
+        this.state = {
+        };
     }
 
     render(){

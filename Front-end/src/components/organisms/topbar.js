@@ -1,6 +1,5 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
-import rsScroller from 'react-smooth-scroller';
+import styled from 'styled-components'
 
 import Label from '../atoms/label'
 
