@@ -17,6 +17,9 @@ const Wrapper = styled.div`
 
 const A = styled.a`
     text-decoration: none;
+    &:hover  {
+        text-decoration: none;
+    }
 `
 
 class Topbar extends React.Component {
