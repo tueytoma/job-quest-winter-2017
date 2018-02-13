@@ -1,13 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import api from '../../api'
-// import  _ from 'lodash'
+import  _ from 'lodash'
+
+import { Modal } from 'react-bootstrap';
 
 import Label from '../atoms/label'
 
 const Wrapper = styled.div`
     width: 80%;
-    height: 150px;
+    height: auto;
     display: flex;
     align-items: center;
     align-self: center;
@@ -16,10 +18,10 @@ const Wrapper = styled.div`
     transition: all 0.3s ease;
     margin: 8px 0 8px 0;
     padding-bottom: 8px;
+    padding-top: 8px;
     border-bottom: 2px solid rgba(200,200,200,0.5);
 
     &:hover {
-        cursor: pointer;
         background: rgba(200,200,200,0.2);
     }
 `
@@ -67,64 +69,77 @@ const Status = styled.div`
 class Notebox extends React.Component {
     constructor(props) {
         super(props)
+
+        this.handleShow = this.handleShow.bind(this);
+        this.handleHide = this.handleHide.bind(this);
+
         this.state = {
             show: false
         };
     }
 
-    handleClose = () => {
+    handleHide = e => {
         this.setState({ show: false });
     }
 
-    handleShow = () => {
+    handleShow = e => {
         this.setState({ show: true });
     }
 
     toggle = e => {
         api.toggleStatus(this.props.note._id)
             .then((res)=>{
-                    // console.log(res)
-                    window.location.reload(true);
-                    // console.log("SUCCESS")
+                window.location.reload(true);
             })
     }
 
     delItem = e => {
         api.removeItemById(this.props.note._id)
             .then((res)=>{
-                    // console.log(res)
                     window.location.reload(true);
-                    // console.log("SUCCESS")
             })
     }
 
     render() {
-        // let desc = _.truncate(this.props.note.description, {
-        //     'length': 200,
-        //     'separator': ' '
-        //   });
+        let desc = _.truncate(this.props.note.description, {
+            'length': 150,
+            'separator': ' '
+          });
         
         let Day = ["Sunday ", "Monday", "Tuesday ", "Wednesday", "Thursday", "Friday", "Saturday "]
         let Month = ["January","February","March","April","May","June","July", "August","September","October","November","December"]
         let date = Day[new Date(String(this.props.note.end_date)).getDay()] + " " + new Date(String(this.props.note.end_date)).getDate() + " " +  Month[new Date(String(this.props.note.end_date)).getMonth()] + " " +  new Date(String(this.props.note.end_date)).getFullYear()
         if(this.props.note.end_date == null) date = 'No DEADLINE'
         return(
-            <Wrapper onClick={this.handleShow}>
+            <Wrapper>
                 <Left >
                     <Status onClick={this.toggle} status={this.props.note.status === 'Todo' ? "#FF0000" : "#00FF00"}/>
                 </Left>
                 <Right>
                     <Label size="24px" weight="900" color="#222222">{this.props.note.name}</Label>
-                    <Label size="18px" weight="100" color="#545454">{this.props.note.description}</Label>
+                    <Label size="18px" weight="100" color="#545454">{desc}</Label>
                     <Div >
                         <Half>
                             <Label size="16px" weight="100" color="#949494">deadline: {date}</Label>
                         </Half>
                         <Half style={{justifyContent: 'flex-end'}}>
+                            <Label onClick={this.handleShow} size="16px" weight="100" color="#4f485c" delete>more detail</Label>
                             <Label onClick={this.delItem} size="16px" weight="100" color="#cc0000" delete>delete</Label>
                         </Half>
                     </Div >
                 </Right>
+
+                <Modal show={this.state.show} onHide={this.handleHide} style={{fontFamily: 'Kanit'}}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>{this.props.note.name}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body style={{display: 'flex', flexDirection:'column'}}>
+                        <Label size="24px" weight="500" color="#222222">description</Label>
+                        <Label size="16px" weight="100" color="#4f485c">{this.props.note.description}</Label>
+                        <Label style={{marginTop: '16px'}} size="24px" weight="500" color="#222222">deadline</Label>
+                        <Label size="16px" weight="100" color="#4f485c">{date}</Label>
+                    </Modal.Body>
+                </Modal>
             </Wrapper>
         )
     }

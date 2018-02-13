@@ -5,12 +5,19 @@ let api = {}
 
 api.err = err => {
     throw err.response
-	/*if (err.response && err.response.body.error) throw err.response.body.error
-	else throw err*/
 }
 
 api.getTodo = () =>{
     return Request.get(config.BACKURL + '/')
+        .then(res => {
+            return res.body.todo_list
+        })
+}
+
+api.getTodoBy = (name,status) => {
+    return Request.get(config.BACKURL + '/todo')
+        .query({name : name, status: status})
+        .set('Accept', 'application/json')
         .then(res => {
             return res.body.todo_list
         })

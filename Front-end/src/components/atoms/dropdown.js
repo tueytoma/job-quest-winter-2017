@@ -17,7 +17,6 @@ const Select = styled.select`
     box-sizing: border-box;
     border-radius: 6px;
     padding: 2px 16px 4px 16px;
-    margin: 15px 0 0 16px;
     outline: none;
     transition: all 0.2s ease;
 
@@ -43,7 +42,7 @@ class DropdownMenu extends React.Component {
         return(
             <Wrapper >
                 <Select style={this.props.style} value={this.props.value} onChange={this.props.onChange} color={this.props.color} width={this.props.width} height= {this.props.height}>
-                    <Option value="all">All.</Option>
+                    <Option value="All">All</Option>
                     {this.props.menu.map(item => (
                         <Option key={item} value={item}>{item}</Option>
                     ))}
