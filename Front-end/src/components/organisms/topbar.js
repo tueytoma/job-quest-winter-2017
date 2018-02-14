@@ -32,9 +32,9 @@ class Topbar extends React.Component {
     render() {
         return(
             <Wrapper>
-                <A href="#tool"><Label size="20px" weight="100" color="white" topbar>Tools</Label></A>
-                <A href="#list"><Label size="20px" weight="100" color="white" topbar>To-do lists</Label></A>
-                <A href="#create"><Label size="20px" weight="100" color="white" topbar dark>Create Note</Label></A>
+                <A href="#tool"><Label size="20px" weight="300" color="white" topbar>Tools</Label></A>
+                <A href="#list"><Label size="20px" weight="300" color="white" topbar>To-do lists</Label></A>
+                <A href="#create"><Label size="20px" weight="300" color="white" topbar dark>Create Note</Label></A>
             </Wrapper>
         )
     }

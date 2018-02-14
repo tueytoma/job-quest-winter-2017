@@ -11,7 +11,7 @@ const Button = styled.button`
     
     font-family: Kanit;
     font-style: normal;
-    font-weight: 800;
+    font-weight: 500;
     line-height: normal;
     font-size: ${props => props.cancelregis ? "18px" : props.loginpage ? "16px" : props.size};
     color: ${props => props.disabled ? "#c4c4c4" : props.dark ? "#F9FAFC" : props.color}; 

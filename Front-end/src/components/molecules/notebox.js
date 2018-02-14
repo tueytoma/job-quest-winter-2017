@@ -116,28 +116,28 @@ class Notebox extends React.Component {
                     <Status onClick={this.toggle} status={this.props.note.status === 'Todo' ? "#FF0000" : "#00FF00"}/>
                 </Left>
                 <Right>
-                    <Label size="24px" weight="900" color="#222222">{this.props.note.name}</Label>
-                    <Label size="18px" weight="100" color="#545454">{desc}</Label>
+                    <Label size="24px" weight="700" color="#222222">{this.props.note.name}</Label>
+                    <Label size="18px" weight="300" color="#545454">{desc}</Label>
                     <Div >
                         <Half>
-                            <Label size="16px" weight="100" color="#949494">deadline: {date}</Label>
+                            <Label size="16px" weight="300" color="#949494">deadline: {date}</Label>
                         </Half>
                         <Half style={{justifyContent: 'flex-end'}}>
-                            <Label onClick={this.handleShow} size="16px" weight="100" color="#4f485c" delete>more detail</Label>
-                            <Label onClick={this.delItem} size="16px" weight="100" color="#cc0000" delete>delete</Label>
+                            <Label onClick={this.handleShow} size="16px" weight="300" color="#4f485c" delete>more detail</Label>
+                            <Label onClick={this.delItem} size="16px" weight="300" color="#cc0000" delete>delete</Label>
                         </Half>
                     </Div >
                 </Right>
 
-                <Modal show={this.state.show} onHide={this.handleHide} style={{fontFamily: 'Kanit'}}>
+                <Modal show={this.state.show} onHide={this.handleHide} style={{fontFamily: 'Kanit'}} bsSize="large">
                     <Modal.Header closeButton>
                         <Modal.Title>{this.props.note.name}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body style={{display: 'flex', flexDirection:'column'}}>
                         <Label size="24px" weight="500" color="#222222">description</Label>
-                        <Label size="16px" weight="100" color="#4f485c">{this.props.note.description}</Label>
+                        <Label size="16px" weight="300" color="#4f485c">{this.props.note.description}</Label>
                         <Label style={{marginTop: '16px'}} size="24px" weight="500" color="#222222">deadline</Label>
-                        <Label size="16px" weight="100" color="#4f485c">{date}</Label>
+                        <Label size="16px" weight="300" color="#4f485c">{date}</Label>
                     </Modal.Body>
                 </Modal>
             </Wrapper>

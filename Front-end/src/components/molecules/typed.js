@@ -59,7 +59,7 @@ class Typed extends Component {
     render() {
         return (
             <Wrapper>
-                <Label size="72px" weight="900" color="white">
+                <Label size="72px" weight="700" color="white">
                     {this.state.typed}|
                 </Label>
             </Wrapper>

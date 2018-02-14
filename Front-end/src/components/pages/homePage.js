@@ -107,8 +107,8 @@ class homePage extends React.Component {
 
     validate = () => {
         var check = 0
-        if(this.state.name.length <= 0 || this.state.name.length > 200) check--
-        if(this.state.description.length <= 0 || this.state.name.length > 200) check--
+        if(this.state.name.length <= 0 || this.state.name.length > 100) check--
+        if(this.state.description.length <= 0) check--
         return check===0
     }
 
@@ -145,7 +145,7 @@ class homePage extends React.Component {
           resultFeed.push(<Notebox key={i} note={this.state.results[i]}/>)
         
         if(this.state.results.length === 0) 
-        resultFeed.push(<Label style={{textAlign: 'center'}} size="24px" weight="100" color="#c4c4c4">No Items</Label>)
+        resultFeed.push(<Label style={{textAlign: 'center'}} size="24px" weight="300" color="#c4c4c4">No Items</Label>)
         
         return (
             <Wrapper>
@@ -168,23 +168,23 @@ class homePage extends React.Component {
                 <HeaderWrapper id="tool" bgColor="#F5f5f5" style={{padding: "100px 0"}}>
                     <CenterWraper style={{flexDirection: 'row', justifyContent: 'center'}}>
                         <Div>
-                            <Label size="24px" weight="900" color="#545454">CREATE</Label>
+                            <Label size="24px" weight="800" color="#545454">CREATE</Label>
                             <Label style={{textAlign: 'center'}}
-                            size="18px" weight="100" color="#c4c4c4">
+                            size="18px" weight="300" color="#c4c4c4">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ligula justo, dictum faucibus ligula sit amet, tincidunt auctor ante. Ut feugiat lacus at risus lacinia imperdiet. Sed ultricies est eget.
                             </Label>
                         </Div>
                         <Div>
-                            <Label size="24px" weight="900" color="#545454">CHECK</Label>
+                            <Label size="24px" weight="800" color="#545454">CHECK</Label>
                             <Label style={{textAlign: 'center'}}
-                            size="18px" weight="100" color="#c4c4c4">
+                            size="18px" weight="300" color="#c4c4c4">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ligula justo, dictum faucibus ligula sit amet, tincidunt auctor ante. Ut feugiat lacus at risus lacinia imperdiet. Sed ultricies est eget.
                             </Label>
                         </Div>
                         <Div>
-                            <Label size="24px" weight="900" color="#545454">DELETE</Label>
+                            <Label size="24px" weight="800" color="#545454">DELETE</Label>
                             <Label style={{textAlign: 'center'}}
-                            size="18px" weight="100" color="#c4c4c4">
+                            size="18px" weight="300" color="#c4c4c4">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ligula justo, dictum faucibus ligula sit amet, tincidunt auctor ante. Ut feugiat lacus at risus lacinia imperdiet. Sed ultricies est eget.
                             </Label>
                         </Div>
@@ -193,17 +193,17 @@ class homePage extends React.Component {
 
                 <HeaderWrapper id="create" bgColor="#F9FAFC" style={{padding: "100px 0"}}>
                     <CenterWraper style={{alignItems: 'center'}}>
-                        <Label size="60px" weight="900" color="#4f485c">Create_Note</Label>
+                        <Label title size="60px" weight="700" color="#4f485c">Create_Note</Label>
                         <CenterWraper style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
-                            <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}}size="18px" weight="900" color="#4f485c">Name of Note</Label>
+                            <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}}size="18px" weight="500" color="#4f485c">Name of Note</Label>
                             <TextField onChange={this.changeName} placeholder="name of note" width="400px" height="40px"/>
                         </CenterWraper>
                         <CenterWraper style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
-                            <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}} size="18px" weight="900" color="#4f485c">Description</Label>
+                            <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}} size="18px" weight="500" color="#4f485c">Description</Label>
                             <TextField onChange={this.changeDescription} placeholder="description" width="400px" height="40px"/>
                         </CenterWraper>
                         <CenterWraper style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
-                            <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}} size="18px" weight="900" color="#4f485c">Deadline</Label>
+                            <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}} size="18px" weight="500" color="#4f485c">Deadline</Label>
                             <TextField type="Date" onChange={this.changeDate} placeholder="end date" width="400px" height="40px"/>
                         </CenterWraper>
                         <Button onClick={this.createNote} height="50px" width="200px" size="24px" color="#4f485c">Create</Button>
@@ -215,11 +215,11 @@ class homePage extends React.Component {
 
                 <HeaderWrapper id="list" bgColor="#F5f5f5" style={{padding: "100px 0"}}>
                     <CenterWraper style={{alignItems: 'center'}}>
-                        <Label title size="60px" weight="900" color="#4f485c">To-do_Lists</Label>
+                        <Label title size="60px" weight="700" color="#4f485c">To-do_Lists</Label>
                         <CenterWraper style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
                             <TextField onKeyDown={this.searchEnter} onChange={this.changSearchName} placeholder="search" width="400px" height="40px"/>
                             <Dropdown style={{marginLeft: '16px'}} onChange={this.changSearchType} width="auto" height="40px" menu={['Todo','Done']}/>
-                            <Label topbar onClick={this.search} size="16px" weight="100" color="#4f485c">search</Label>
+                            <Label topbar onClick={this.search} size="16px" weight="400" color="#4f485c">search</Label>
                         </CenterWraper>
                         {resultFeed}
                     </CenterWraper>
@@ -227,7 +227,7 @@ class homePage extends React.Component {
 
                 <HeaderWrapper bgColor="#4f485c" height="60px">
                     <CenterWraper style={{alignItems: 'center', justifyContent: 'center'}}>
-                        <Label style={{textAlign: 'center'}} size="16px" weight="100" color="#80788E"> 
+                        <Label style={{textAlign: 'center'}} size="16px" weight="300" color="#80788E"> 
                             Design & Develope by: Sitthichai Tuey Saejia
                         </Label>
                     </CenterWraper>
