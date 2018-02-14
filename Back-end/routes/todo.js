@@ -46,18 +46,26 @@ router.get('/todo', (req, res)=>{
         ]
     }
     else {
-        query['$and'] = [
+        query['$or'] = [
             {
                 status: {
                     $regex: status,
                     $options: 'i'
-                }
-            },
-            {
+                },
                 name: {
                     $regex: name,
                     $options: 'i'
+                }
+            },
+            {
+                status: {
+                    $regex: status,
+                    $options: 'i'
                 },
+                description: {
+                    $regex: name,
+                    $options: 'i'
+                }
             }
         ]
     }
