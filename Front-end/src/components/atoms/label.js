@@ -10,7 +10,7 @@ const Label = styled.span`
     padding: ${props => props.topbar === true ? "10px 16px" : "0"};
     border-radius: 4px;
     background-color: ${props => props.dark === true ? "#cc0000" : "none"};
-    text-shadow: ${props => props.title === true ? "4px 4px rgba(0, 0, 0, 0.25)" : "none"};
+    text-shadow: ${props => props.titlename === true ? "4px 4px rgba(0, 0, 0, 0.25)" : "none"};
     transition: all 0.1s ease;
 
     &:hover  {
