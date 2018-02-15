@@ -89,14 +89,14 @@ class Notebox extends React.Component {
     toggle = e => {
         api.toggleStatus(this.props.note._id)
             .then((res)=>{
-                window.location.reload(true);
+                this.props.editStatus()
             })
     }
 
     delItem = e => {
         api.removeItemById(this.props.note._id)
             .then((res)=>{
-                    window.location.reload(true);
+                this.props.editStatus()
             })
     }
 
@@ -138,6 +138,8 @@ class Notebox extends React.Component {
                         <Label size="16px" weight="300" color="#4f485c">{this.props.note.description}</Label>
                         <Label style={{marginTop: '16px'}} size="24px" weight="500" color="#222222">deadline</Label>
                         <Label size="16px" weight="300" color="#4f485c">{date}</Label>
+                        <Label style={{marginTop: '16px'}} size="24px" weight="500" color="#222222">status</Label>
+                        <Label size="16px" weight="300" color="#4f485c">{this.props.note.status}</Label>
                     </Modal.Body>
                 </Modal>
             </Wrapper>

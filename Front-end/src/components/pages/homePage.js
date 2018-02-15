@@ -97,12 +97,10 @@ class homePage extends React.Component {
             api.createNote(data)
                 .then((res)=>{
                     if(this.validate()) {
-                    // console.log("SUCCESS")
-                        window.location.reload(true);
+                        this.search()
                     }
                 })
         }
-
     }
 
     validate = () => {
@@ -142,10 +140,10 @@ class homePage extends React.Component {
     render() {
         var resultFeed = []
         for (var i = 0 ; i < this.state.results.length ; i++)
-          resultFeed.push(<Notebox key={i} note={this.state.results[i]}/>)
+          resultFeed.push(<Notebox editStatus={this.search} key={i} note={this.state.results[i]}/>)
         
         if(this.state.results.length === 0) 
-        resultFeed.push(<Label style={{textAlign: 'center'}} size="24px" weight="300" color="#c4c4c4">No Items</Label>)
+        resultFeed.push(<Label style={{textAlign: 'center'}} key={0} size="24px" weight="300" color="#c4c4c4">No Items</Label>)
         
         return (
             <Wrapper>
@@ -193,7 +191,7 @@ class homePage extends React.Component {
 
                 <HeaderWrapper id="create" bgColor="#F9FAFC" style={{padding: "100px 0"}}>
                     <CenterWraper style={{alignItems: 'center'}}>
-                        <Label title size="60px" weight="700" color="#4f485c">Create_Note</Label>
+                        <Label title={"true"} size="60px" weight="700" color="#4f485c">Create_Note</Label>
                         <CenterWraper style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
                             <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}}size="18px" weight="500" color="#4f485c">Name of Note</Label>
                             <TextField onChange={this.changeName} placeholder="name of note" width="400px" height="40px"/>
@@ -215,7 +213,7 @@ class homePage extends React.Component {
 
                 <HeaderWrapper id="list" bgColor="#F5f5f5" style={{padding: "100px 0"}}>
                     <CenterWraper style={{alignItems: 'center'}}>
-                        <Label title size="60px" weight="700" color="#4f485c">To-do_Lists</Label>
+                        <Label title={"true"} size="60px" weight="700" color="#4f485c">To-do_Lists</Label>
                         <CenterWraper style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
                             <TextField onKeyDown={this.searchEnter} onChange={this.changSearchName} placeholder="search" width="400px" height="40px"/>
                             <Dropdown style={{marginLeft: '16px'}} onChange={this.changSearchType} width="auto" height="40px" menu={['Todo','Done']}/>
