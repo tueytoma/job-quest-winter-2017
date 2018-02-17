@@ -16,7 +16,7 @@ const HeaderWrapper = styled.div`
     flex-direction: column;
 `
 
-const CenterWraper = styled.div`
+const CenterWrapper = styled.div`
     width: 80%;
     height: 100%;
     display: flex;
@@ -46,15 +46,15 @@ class ListSection extends React.Component {
     render() {        
         return (
             <HeaderWrapper id="list" bgColor="#F5f5f5" style={{padding: "100px 0"}}>
-                <CenterWraper style={{alignItems: 'center'}}>
+                <CenterWrapper style={{alignItems: 'center'}}>
                     <Label titlename size="60px" weight="700" color="#4f485c">To-do_Lists</Label>
-                    <CenterWraper style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
+                    <CenterWrapper style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
                         <TextField onKeyDown={this.searchEnter} onChange={this.props.changeName} placeholder="search" width="400px" height="40px"/>
                         <Dropdown style={{marginLeft: '16px'}} onChange={this.props.changeType} width="auto" height="40px" menu={['Todo','Done']}/>
                         <Label topbar onClick={this.props.searchFunc} size="16px" weight="400" color="#4f485c">search</Label>
-                    </CenterWraper>
+                    </CenterWrapper>
                     {this.props.resultFeed}
-                </CenterWraper>
+                </CenterWrapper>
             </HeaderWrapper>
         )
     }

@@ -14,7 +14,7 @@ const HeaderWrapper = styled.div`
     flex-direction: column;
 `
 
-const CenterWraper = styled.div`
+const CenterWrapper = styled.div`
     width: 80%;
     height: 100%;
     display: flex;
@@ -34,11 +34,11 @@ class DescriptionSection extends React.Component {
     render() {        
         return (
             <HeaderWrapper bgColor="#4f485c" height="15vh">
-                <CenterWraper style={{alignItems: 'center', justifyContent: 'center'}}>
+                <CenterWrapper style={{alignItems: 'center', justifyContent: 'center'}}>
                     <Label style={{textAlign: 'center'}} size="24px" weight="500" color="white"> 
                     New way to make notes - One of the most effective ways to remember
                     </Label>
-                </CenterWraper>
+                </CenterWrapper>
             </HeaderWrapper>
         )
     }

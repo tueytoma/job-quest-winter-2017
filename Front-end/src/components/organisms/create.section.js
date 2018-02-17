@@ -18,7 +18,7 @@ const HeaderWrapper = styled.div`
     padding: 100px 0;
 `
 
-const CenterWraper = styled.div`
+const CenterWrapper = styled.div`
     width: 80%;
     height: 100%;
     display: flex;
@@ -93,25 +93,25 @@ class CreateSection extends React.Component {
     render() {        
         return (
             <HeaderWrapper id="create" bgColor="#F9FAFC">
-                <CenterWraper>
+                <CenterWrapper>
                     <Label titlename size="60px" weight="700" color="#4f485c">Create_Note</Label>
-                    <CenterWraper style={{justifyContent: 'center', flexDirection: 'row'}}>
+                    <CenterWrapper style={{justifyContent: 'center', flexDirection: 'row'}}>
                         <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}}size="18px" weight="500" color="#4f485c">Name of Note</Label>
                         <TextField value={this.state.name} onKeyDown={this.createEnter} onChange={this.changeName} placeholder="name of note" width="400px" height="40px"/>
-                    </CenterWraper>
-                    <CenterWraper style={{justifyContent: 'center', flexDirection: 'row'}}>
+                    </CenterWrapper>
+                    <CenterWrapper style={{justifyContent: 'center', flexDirection: 'row'}}>
                         <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}} size="18px" weight="500" color="#4f485c">Description</Label>
                         <TextField value={this.state.description} onKeyDown={this.createEnter} onChange={this.changeDescription} placeholder="description" width="400px" height="40px"/>
-                    </CenterWraper>
-                    <CenterWraper style={{justifyContent: 'center', flexDirection: 'row'}}>
+                    </CenterWrapper>
+                    <CenterWrapper style={{justifyContent: 'center', flexDirection: 'row'}}>
                         <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}} size="18px" weight="500" color="#4f485c">Deadline</Label>
                         <TextField value={this.state.end_date} onKeyDown={this.createEnter} type="Date" onChange={this.changeDate} placeholder="end date" width="400px" height="40px"/>
-                    </CenterWraper>
+                    </CenterWrapper>
                     <Button onClick={this.createNote} height="50px" width="200px" size="24px" color="#4f485c">Create</Button>
                     {this.state.error && <Label style={{textAlign: 'center', marginTop: '16px'}} size="18px" weight="300" color="#880000">
                         'Plase set value of Name of Note and Description (Name of Note is limited to 100 characters).'
                     </Label>}
-                </CenterWraper>
+                </CenterWrapper>
             </HeaderWrapper>
         )
     }

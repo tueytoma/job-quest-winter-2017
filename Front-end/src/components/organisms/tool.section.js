@@ -14,7 +14,7 @@ const HeaderWrapper = styled.div`
     flex-direction: column;
 `
 
-const CenterWraper = styled.div`
+const CenterWrapper = styled.div`
     width: 80%;
     height: 100%;
     display: flex;
@@ -39,7 +39,7 @@ class ToolSection extends React.Component {
     render() {        
         return (
             <HeaderWrapper id="tool" bgColor="#F5f5f5" style={{padding: "100px 0"}}>
-                <CenterWraper style={{flexDirection: 'row', justifyContent: 'center'}}>
+                <CenterWrapper style={{flexDirection: 'row', justifyContent: 'center'}}>
                     <Div>
                         <Label size="24px" weight="800" color="#4f485c">CREATE</Label>
                         <Label style={{textAlign: 'center'}}
@@ -61,7 +61,7 @@ class ToolSection extends React.Component {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ligula justo, dictum faucibus ligula sit amet, tincidunt auctor ante. Ut feugiat lacus at risus lacinia imperdiet. Sed ultricies est eget.
                         </Label>
                     </Div>
-                </CenterWraper>
+                </CenterWrapper>
             </HeaderWrapper>
         )
     }

@@ -14,7 +14,7 @@ const HeaderWrapper = styled.div`
     flex-direction: column;
 `
 
-const CenterWraper = styled.div`
+const CenterWrapper = styled.div`
     width: 80%;
     height: 100%;
     display: flex;
@@ -33,11 +33,11 @@ class FooterSection extends React.Component {
     render() {        
         return (
             <HeaderWrapper bgColor="#4f485c" height="60px">
-                <CenterWraper style={{alignItems: 'center', justifyContent: 'center'}}>
+                <CenterWrapper style={{alignItems: 'center', justifyContent: 'center'}}>
                     <Label style={{textAlign: 'center'}} size="16px" weight="500" color="#80788E"> 
                         Design & Develope by: Sitthichai Tuey Saejia
                     </Label>
-                </CenterWraper>
+                </CenterWrapper>
             </HeaderWrapper>
         )
     }
