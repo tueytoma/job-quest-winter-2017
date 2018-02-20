@@ -1,9 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import utils from '../../utils'
 
 import Label from '../atoms/label'
 import Dropdown from '../atoms/dropdown'
 import TextField from '../atoms/textfield'
+
+const Wrapper = styled.div``
 
 const HeaderWrapper = styled.div`
     background-color: ${props => props.bgColor};
@@ -45,17 +48,24 @@ class ListSection extends React.Component {
 
     render() {        
         return (
-            <HeaderWrapper id="list" bgColor="#F5f5f5" style={{padding: "100px 0"}}>
-                <CenterWrapper style={{alignItems: 'center'}}>
-                    <Label titlename size="60px" weight="700" color="#4f485c">To-do_Lists</Label>
-                    <CenterWrapper style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
-                        <TextField onKeyDown={this.searchEnter} onChange={this.props.changeName} placeholder="search" width="400px" height="40px"/>
-                        <Dropdown style={{marginLeft: '16px'}} onChange={this.props.changeType} width="auto" height="40px" menu={['Todo','Done']}/>
-                        <Label topbar onClick={this.props.searchFunc} size="16px" weight="400" color="#4f485c">search</Label>
+            <Wrapper>
+                {utils.isMobile() ? 
+                <HeaderWrapper id="list" bgColor="#F5f5f5" style={{padding: "100px 0"}}>
+                </HeaderWrapper>
+                :
+                <HeaderWrapper id="list" bgColor="#F5f5f5" style={{padding: "100px 0"}}>
+                    <CenterWrapper style={{alignItems: 'center'}}>
+                        <Label titlename size="60px" weight="700" color="#4f485c">To-do_Lists</Label>
+                        <CenterWrapper style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
+                            <TextField onKeyDown={this.searchEnter} onChange={this.props.changeName} placeholder="search" width="400px" height="40px"/>
+                            <Dropdown style={{marginLeft: '16px'}} onChange={this.props.changeType} width="auto" height="40px" menu={['Todo','Done']}/>
+                            <Label topbar onClick={this.props.searchFunc} size="16px" weight="400" color="#4f485c">search</Label>
+                        </CenterWrapper>
+                        {this.props.resultFeed}
                     </CenterWrapper>
-                    {this.props.resultFeed}
-                </CenterWrapper>
-            </HeaderWrapper>
+                </HeaderWrapper>
+                }
+            </Wrapper>
         )
     }
 }

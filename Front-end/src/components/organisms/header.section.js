@@ -42,15 +42,15 @@ class HeaderSection extends React.Component {
                 <HeaderWrapper bgColor="#80788E" height="98vh">
                     <CenterWrapper style={{width: '99%'}}>
                         <Topbar/>
-                        <Typed/>
-                        <Label size="24px" weight="500" color="white">do <b>Check-list</b> that you can manage yourself</Label>
+                        <Typed size="36px" style={{marginBottom: '16px'}}/>
+                        <Label size="16px" weight="500" color="white">do <b>Check-list</b> that you can manage yourself</Label>
                     </CenterWrapper>
                 </HeaderWrapper>
                 :
                 <HeaderWrapper bgColor="#80788E" height="95vh">
                     <CenterWrapper>
                         <Topbar/>
-                        <Typed/>
+                        <Typed size="72px"/>
                         <Label size="24px" weight="500" color="white">do <b>Check-list</b> that you can manage yourself</Label>
                     </CenterWrapper>
                 </HeaderWrapper>

@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import utils from '../../utils'
 
 import Label from '../atoms/label'
+
+const Wrapper = styled.div``
 
 const HeaderWrapper = styled.div`
     background-color: ${props => props.bgColor};
@@ -33,13 +36,25 @@ class DescriptionSection extends React.Component {
 
     render() {        
         return (
-            <HeaderWrapper bgColor="#4f485c" height="15vh">
-                <CenterWrapper style={{alignItems: 'center', justifyContent: 'center'}}>
-                    <Label style={{textAlign: 'center'}} size="24px" weight="500" color="white"> 
-                    New way to make notes - One of the most effective ways to remember
-                    </Label>
-                </CenterWrapper>
-            </HeaderWrapper>
+            <Wrapper>
+                {utils.isMobile() ? 
+                <HeaderWrapper bgColor="#4f485c" height="auto" style={{padding: '8px 0 8px 0'}}>
+                    <CenterWrapper style={{alignItems: 'center', justifyContent: 'center'}}>
+                        <Label style={{textAlign: 'center'}} size="16px" weight="500" color="white"> 
+                        New way to make notes - One of the most effective ways to remember
+                        </Label>
+                    </CenterWrapper>
+                </HeaderWrapper>
+                :
+                <HeaderWrapper bgColor="#4f485c" height="15vh">
+                    <CenterWrapper style={{alignItems: 'center', justifyContent: 'center'}}>
+                        <Label style={{textAlign: 'center'}} size="24px" weight="500" color="white"> 
+                        New way to make notes - One of the most effective ways to remember
+                        </Label>
+                    </CenterWrapper>
+                </HeaderWrapper>
+                }
+            </Wrapper>
         )
     }
 }

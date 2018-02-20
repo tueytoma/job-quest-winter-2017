@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import api from '../../api'
+import utils from '../../utils'
 
 import Label from '../atoms/label'
 import Button from '../atoms/button'
@@ -91,21 +92,26 @@ class CreateSection extends React.Component {
     }
 
     render() {        
+        let direction = utils.isMobile() ? "column" : "row"
+        let justify = utils.isMobile() ? "center" : 'flex-end'
+        let w = utils.isMobile() ? "300px" : '400px'
+        let titleSize = utils.isMobile() ? "50px" : "60px"
+        let margin = utils.isMobile() ? "16px" : "0"
         return (
             <HeaderWrapper id="create" bgColor="#F9FAFC">
                 <CenterWrapper>
-                    <Label titlename size="60px" weight="700" color="#4f485c">Create_Note</Label>
-                    <CenterWrapper style={{justifyContent: 'center', flexDirection: 'row'}}>
-                        <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}}size="18px" weight="500" color="#4f485c">Name of Note</Label>
-                        <TextField value={this.state.name} onKeyDown={this.createEnter} onChange={this.changeName} placeholder="name of note" width="400px" height="40px"/>
+                    <Label titlename size={titleSize} weight="700" color="#4f485c" style={{marginBottom: margin}}>Create_Note</Label>
+                    <CenterWrapper style={{justifyContent: 'center', flexDirection: direction}}>
+                        <Label style={{width: '150px', display: 'flex', justifyContent: justify, marginRight: '24px'}}size="18px" weight="500" color="#4f485c">Name of Note</Label>
+                        <TextField value={this.state.name} onKeyDown={this.createEnter} onChange={this.changeName} placeholder="name of note" width={w} height="40px"/>
                     </CenterWrapper>
-                    <CenterWrapper style={{justifyContent: 'center', flexDirection: 'row'}}>
-                        <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}} size="18px" weight="500" color="#4f485c">Description</Label>
-                        <TextField value={this.state.description} onKeyDown={this.createEnter} onChange={this.changeDescription} placeholder="description" width="400px" height="40px"/>
+                    <CenterWrapper style={{justifyContent: 'center', flexDirection: direction}}>
+                        <Label style={{width: '150px', display: 'flex', justifyContent: justify, marginRight: '24px'}} size="18px" weight="500" color="#4f485c">Description</Label>
+                        <TextField value={this.state.description} onKeyDown={this.createEnter} onChange={this.changeDescription} placeholder="description" width={w} height="40px"/>
                     </CenterWrapper>
-                    <CenterWrapper style={{justifyContent: 'center', flexDirection: 'row'}}>
-                        <Label style={{width: '150px', display: 'flex', justifyContent: 'flex-end', marginRight: '24px'}} size="18px" weight="500" color="#4f485c">Deadline</Label>
-                        <TextField value={this.state.end_date} onKeyDown={this.createEnter} type="Date" onChange={this.changeDate} placeholder="end date" width="400px" height="40px"/>
+                    <CenterWrapper style={{justifyContent: 'center', flexDirection: direction}}>
+                        <Label style={{width: '150px', display: 'flex', justifyContent: justify, marginRight: '24px'}} size="18px" weight="500" color="#4f485c">Deadline</Label>
+                        <TextField value={this.state.end_date} onKeyDown={this.createEnter} type="Date" onChange={this.changeDate} placeholder="end date" width={w} height="40px"/>
                     </CenterWrapper>
                     <Button onClick={this.createNote} height="50px" width="200px" size="24px" color="#4f485c">Create</Button>
                     {this.state.error && <Label style={{textAlign: 'center', marginTop: '16px'}} size="18px" weight="300" color="#880000">
