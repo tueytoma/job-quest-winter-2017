@@ -16,7 +16,7 @@ const HeaderWrapper = styled.div`
     height: ${props => props.height};
     display: flex;
     flex-direction: column;
-    padding: 100px 0;
+    padding: 50px 0;
 `
 
 const CenterWrapper = styled.div`
@@ -94,9 +94,10 @@ class CreateSection extends React.Component {
     render() {        
         let direction = utils.isMobile() ? "column" : "row"
         let justify = utils.isMobile() ? "center" : 'flex-end'
-        let w = utils.isMobile() ? "300px" : '400px'
-        let titleSize = utils.isMobile() ? "50px" : "60px"
+        let w = utils.isMobile() ? "90vw" : '400px'
+        let titleSize = utils.isMobile() ? "12vw" : "60px"
         let margin = utils.isMobile() ? "16px" : "0"
+        let errorSize = utils.isMobile() ? "14px" : "18px"
         return (
             <HeaderWrapper id="create" bgColor="#F9FAFC">
                 <CenterWrapper>
@@ -114,8 +115,8 @@ class CreateSection extends React.Component {
                         <TextField value={this.state.end_date} onKeyDown={this.createEnter} type="Date" onChange={this.changeDate} placeholder="end date" width={w} height="40px"/>
                     </CenterWrapper>
                     <Button onClick={this.createNote} height="50px" width="200px" size="24px" color="#4f485c">Create</Button>
-                    {this.state.error && <Label style={{textAlign: 'center', marginTop: '16px'}} size="18px" weight="300" color="#880000">
-                        'Plase set value of Name of Note and Description (Name of Note is limited to 100 characters).'
+                    {this.state.error && <Label style={{textAlign: 'center', marginTop: '16px'}} size={errorSize} weight="300" color="#880000">
+                        Plase set value of Name of Note and Description (Name of Note is limited to 100 characters).
                     </Label>}
                 </CenterWrapper>
             </HeaderWrapper>

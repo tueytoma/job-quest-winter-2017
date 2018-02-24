@@ -39,7 +39,7 @@ class DescriptionSection extends React.Component {
             <Wrapper>
                 {utils.isMobile() ? 
                 <HeaderWrapper bgColor="#4f485c" height="auto" style={{padding: '8px 0 8px 0'}}>
-                    <CenterWrapper style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <CenterWrapper style={{width:'99%', alignItems: 'center', justifyContent: 'center'}}>
                         <Label style={{textAlign: 'center'}} size="16px" weight="500" color="white"> 
                         New way to make notes - One of the most effective ways to remember
                         </Label>

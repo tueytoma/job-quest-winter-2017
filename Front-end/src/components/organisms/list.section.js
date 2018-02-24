@@ -6,8 +6,6 @@ import Label from '../atoms/label'
 import Dropdown from '../atoms/dropdown'
 import TextField from '../atoms/textfield'
 
-const Wrapper = styled.div``
-
 const HeaderWrapper = styled.div`
     background-color: ${props => props.bgColor};
     background-image: url(${props => props.bgImage});
@@ -20,7 +18,7 @@ const HeaderWrapper = styled.div`
 `
 
 const CenterWrapper = styled.div`
-    width: 80%;
+    width: ${props => props.width};
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -46,26 +44,28 @@ class ListSection extends React.Component {
         }
     }
 
-    render() {        
+    render() {       
+        let titleSize = utils.isMobile() ? "12vw" : "60px"
+        let pad = utils.isMobile() ? "50px 0" : "100px 0" 
+        let direction = utils.isMobile() ? "column" : "row"
+        let wTextfield = utils.isMobile() ? "80vw" : "400px"
+        let mLeft = utils.isMobile() ? "0" : "16px"
+        let mBottom = utils.isMobile() ? "16px" : "0"
+        let wDropdown = utils.isMobile() ? "80vw" : "auto"
+        let w = utils.isMobile() ? "99%" : "80%"
         return (
-            <Wrapper>
-                {utils.isMobile() ? 
-                <HeaderWrapper id="list" bgColor="#F5f5f5" style={{padding: "100px 0"}}>
-                </HeaderWrapper>
-                :
-                <HeaderWrapper id="list" bgColor="#F5f5f5" style={{padding: "100px 0"}}>
-                    <CenterWrapper style={{alignItems: 'center'}}>
-                        <Label titlename size="60px" weight="700" color="#4f485c">To-do_Lists</Label>
-                        <CenterWrapper style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
-                            <TextField onKeyDown={this.searchEnter} onChange={this.props.changeName} placeholder="search" width="400px" height="40px"/>
-                            <Dropdown style={{marginLeft: '16px'}} onChange={this.props.changeType} width="auto" height="40px" menu={['Todo','Done']}/>
-                            <Label topbar onClick={this.props.searchFunc} size="16px" weight="400" color="#4f485c">search</Label>
-                        </CenterWrapper>
-                        {this.props.resultFeed}
-                    </CenterWrapper>
-                </HeaderWrapper>
-                }
-            </Wrapper>
+        <HeaderWrapper id="list" bgColor="#F5f5f5" style={{padding: pad}}>
+            <CenterWrapper width={w} style={{alignItems: 'center'}}>
+                <Label titlename size={titleSize} weight="700" color="#4f485c">To-do_Lists</Label>
+                <CenterWrapper style={{justifyContent: 'center', flexDirection: direction, alignItems: 'center'}}>
+                    <TextField onKeyDown={this.searchEnter} onChange={this.props.changeName} placeholder="search" width={wTextfield} height="40px"/>
+                    <Dropdown style={{marginLeft: mLeft, marginBottom: mBottom}} onChange={this.props.changeType} width={wDropdown} height="40px" menu={['Todo','Done']}/>
+                    <Label topbar onClick={this.props.searchFunc} size="16px" weight="400" color="#4f485c">search</Label>
+                </CenterWrapper>
+                {this.props.resultFeed}
+            </CenterWrapper>
+        </HeaderWrapper>
+
         )
     }
 }

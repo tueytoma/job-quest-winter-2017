@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import utils from '../../utils'
 
 import Label from '../atoms/label'
 
@@ -15,7 +16,7 @@ const HeaderWrapper = styled.div`
 `
 
 const CenterWrapper = styled.div`
-    width: 80%;
+    width: ${props => props.width};
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -30,10 +31,11 @@ class FooterSection extends React.Component {
       };
     }
 
-    render() {        
+    render() {      
+        let w = utils.isMobile() ? "99%" : "80%"  
         return (
             <HeaderWrapper bgColor="#4f485c" height="60px">
-                <CenterWrapper style={{alignItems: 'center', justifyContent: 'center'}}>
+                <CenterWrapper width={w} style={{alignItems: 'center', justifyContent: 'center'}}>
                     <Label style={{textAlign: 'center'}} size="16px" weight="500" color="#80788E"> 
                         Design & Develope by: Sitthichai Tuey Saejia
                     </Label>

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import api from '../../api'
+import utils from '../../utils'
 import  _ from 'lodash'
 
 import { Modal } from 'react-bootstrap';
@@ -8,7 +9,7 @@ import { Modal } from 'react-bootstrap';
 import Label from '../atoms/label'
 
 const Wrapper = styled.div`
-    width: 80%;
+    width: ${props => props.width};
     height: auto;
     display: flex;
     align-items: center;
@@ -110,8 +111,9 @@ class Notebox extends React.Component {
         let Month = ["January","February","March","April","May","June","July", "August","September","October","November","December"]
         let date = Day[new Date(String(this.props.note.end_date)).getDay()] + " " + new Date(String(this.props.note.end_date)).getDate() + " " +  Month[new Date(String(this.props.note.end_date)).getMonth()] + " " +  new Date(String(this.props.note.end_date)).getFullYear()
         if(this.props.note.end_date == null) date = 'No DEADLINE'
+        let w = utils.isMobile() ? "99%" : "80%"
         return(
-            <Wrapper>
+            <Wrapper width={w}>
                 <Left >
                     <Status onClick={this.toggle} status={this.props.note.status === 'Todo' ? "#FF0000" : "#00FF00"}/>
                 </Left>

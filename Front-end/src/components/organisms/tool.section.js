@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import utils from '../../utils'
 
 import Label from '../atoms/label'
+import CreaetIcon from '../atoms/createicon'
+import CheckIcon from '../atoms/checkicon'
+import DeleteIcon from '../atoms/deleteicon'
 
 const HeaderWrapper = styled.div`
     background-color: ${props => props.bgColor};
@@ -16,7 +19,7 @@ const HeaderWrapper = styled.div`
 `
 
 const CenterWrapper = styled.div`
-    width: 80%;
+    width: ${props => props.width};
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -41,10 +44,14 @@ class ToolSection extends React.Component {
     render() {        
         let direction = utils.isMobile() ? "column" : "row"
         let mar = utils.isMobile() ? "16px" : "0"
+        let size = utils.isMobile() ? "40%" : "30%"
+        let pad = utils.isMobile() ? "50px 0" : "100px 0"
+        let w = utils.isMobile() ? "99%" : "80%"
         return (
-            <HeaderWrapper id="tool" bgColor="#F5f5f5" style={{padding: "100px 0"}}>
-                <CenterWrapper style={{flexDirection: direction, justifyContent: 'center'}}>
+            <HeaderWrapper id="tool" bgColor="#F5f5f5" style={{padding: pad}}>
+                <CenterWrapper width={w} style={{flexDirection: direction, justifyContent: 'center'}}>
                     <Div mar = {mar}>
+                        <CreaetIcon width={size}/>
                         <Label size="24px" weight="800" color="#4f485c">CREATE</Label>
                         <Label style={{textAlign: 'center'}}
                         size="18px" weight="300" color="#c4c4c4">
@@ -52,6 +59,7 @@ class ToolSection extends React.Component {
                         </Label>
                     </Div>
                     <Div mar = {mar}>
+                        <CheckIcon width={size}/>
                         <Label size="24px" weight="800" color="#4f485c">CHECK</Label>
                         <Label style={{textAlign: 'center'}}
                         size="18px" weight="300" color="#c4c4c4">
@@ -59,6 +67,7 @@ class ToolSection extends React.Component {
                         </Label>
                     </Div>
                     <Div mar = {mar}>
+                        <DeleteIcon width={size}/>
                         <Label size="24px" weight="800" color="#4f485c">DELETE</Label>
                         <Label style={{textAlign: 'center'}}
                         size="18px" weight="300" color="#c4c4c4">
