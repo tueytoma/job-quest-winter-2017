@@ -36,8 +36,6 @@ class ListSection extends React.Component {
       };
     }
 
-
-
     searchEnter = e => {
         if (e.keyCode === 13) {
             this.props.searchFunc()

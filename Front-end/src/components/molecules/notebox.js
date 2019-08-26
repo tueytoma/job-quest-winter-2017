@@ -58,11 +58,12 @@ const Status = styled.div`
     height: 100px;
     width: 100px;
     border-radius: 100px;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease-in-out;
+    border: ${props => props.status === "#F5f5f5" ? "3px solid #c4c4c4" : "none"};
 
     &:hover {
         cursor: pointer;
-        background: ${props => props.status === "#FF0000" ? "rgba(240,0,0,0.8)" : "rgba(0,240,0,0.8)"};
+        /* background: ${props => props.status === "#F5f5f5" ? "rgba(240,0,0,0.8)" : "rgba(0,240,0,0.8)"}; */
     }
 `
 
@@ -115,7 +116,7 @@ class Notebox extends React.Component {
         return(
             <Wrapper width={w}>
                 <Left >
-                    <Status onClick={this.toggle} status={this.props.note.status === 'Todo' ? "#FF0000" : "#00FF00"}/>
+                    <Status onClick={this.toggle} status={this.props.note.status === 'Todo' ? "#F5f5f5" : "#663366"}/>
                 </Left>
                 <Right>
                     <Label size="24px" weight="700" color="#222222">{this.props.note.name}</Label>

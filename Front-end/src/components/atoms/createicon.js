@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const SVG = styled.svg`
     margin-bottom: 16px;
+    
 `
 
 export default class CreaetIcon extends React.Component {
